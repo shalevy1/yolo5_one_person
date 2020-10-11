@@ -1,0 +1,1 @@
+python test.py --data person_coco.yaml --img 640 --conf 0.1 --weights yolov5s.pt --single-cls

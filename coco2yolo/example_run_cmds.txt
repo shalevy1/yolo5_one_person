@@ -1,0 +1,11 @@
+### To convert coco to yolo format
+
+### TRAIN
+python coco_to_darknet.py --root_data_dir_path /home/mwieczorek/data/coco-dataset \
+--coco_json_filename annotations/person_annotations_train.json \
+--images_dir_name persons/images/train
+
+### VAL
+python coco_to_darknet.py --root_data_dir_path /home/mwieczorek/data/coco-dataset \
+--coco_json_filename annotations/person_annotations_val.json \
+--images_dir_name persons/images/val
