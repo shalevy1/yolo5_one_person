@@ -10,7 +10,7 @@ class Settings():
         self.crop_detections = False
         self.view_img = True
         self.save_txt = False #True
-        self.device = "0"
+        self.device = "cpu"
         self.agnostic_nms=False
         self.augment = False
         self.classes = [0]

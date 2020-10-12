@@ -79,6 +79,8 @@ def detect(opt, save_img=False):
         # Inference
         t1 = time_synchronized()
         pred = model(img, augment=opt.augment)[0]
+        t_tt = time.time()
+        print("This is time per img = {0}".format(t_tt-t1))
 
         # Apply NMS
         pred = non_max_suppression(pred, opt.conf_thres, opt.iou_thres, classes=opt.classes, agnostic=opt.agnostic_nms)
@@ -141,6 +143,12 @@ def detect(opt, save_img=False):
                 cv2.imshow(p, im0)
                 if cv2.waitKey(1) == ord('q'):  # q to quit
                     raise StopIteration
+            
+            #tt
+            from Tomek.signal_visualization import signal_visualization
+            shell_pass_through_door = len(pred)==1 and not pred.count(None)
+            signal_visualization(shell_pass_through_door)
+            #tt
 
             # Save results (image with detections)
             if save_img:
@@ -159,6 +167,8 @@ def detect(opt, save_img=False):
                         vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*fourcc), fps, (w, h))
                     vid_writer.write(im0)
 
+            # print('Done. (%.3fs)' % (time.time() - t0))
+
     if save_txt or save_img:
         print('Results saved to %s' % Path(out))
         if platform.system() == 'Darwin' and not opt.update:  # MacOS
@@ -166,8 +176,6 @@ def detect(opt, save_img=False):
     if save_json:  # Write to json file
         print('Results saved to JSON at %s' % jw.save_path)
         jw.save_json()
-
-    print('Done. (%.3fs)' % (time.time() - t0))
 
 
 if __name__ == '__main__':
