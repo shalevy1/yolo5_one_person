@@ -146,8 +146,9 @@ def detect(opt, save_img=False):
             
             #tt
             from Tomek.signal_visualization import signal_visualization
-            shell_pass_through_door = len(pred)==1 and not pred.count(None)
+            shell_pass_through_door = not pred.count(None) and len(pred[0])==1
             signal_visualization(shell_pass_through_door)
+            print("44444444444444444444444444444444444444444444 len(pred)==1 {0}".format(pred))
             #tt
 
             # Save results (image with detections)
