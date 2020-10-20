@@ -148,12 +148,14 @@ def detect(opt, save_img=False):
             from Tomek.signal_visualization import signal_visualization
             shell_pass_through_door = not pred.count(None) and len(pred[0])==1
             signal_visualization(shell_pass_through_door)
-            print("44444444444444444444444444444444444444444444 len(pred)==1 {0}".format(pred))
+            print("########################")
+            print("Door is open = {}".format(shell_pass_through_door))
+            print("########################")
             #tt
 
             # Save results (image with detections)
             if save_img:
-                if dataset.mode == 'images':
+                if dataset.mode == 'images' and False:
                     cv2.imwrite(save_path, im0)
                 else:
                     if vid_path != save_path:  # new video
@@ -161,7 +163,7 @@ def detect(opt, save_img=False):
                         if isinstance(vid_writer, cv2.VideoWriter):
                             vid_writer.release()  # release previous video writer
 
-                        fourcc = 'mp4v'  # output video codec
+                        fourcc = 'mp4'  # output video codec
                         fps = vid_cap.get(cv2.CAP_PROP_FPS)
                         w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
                         h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))

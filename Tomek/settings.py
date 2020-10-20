@@ -17,3 +17,4 @@ class Settings():
         self.iou_thres = 0.5
         self.update = False
         self.conf_thres = 0.4
+        self.save_img = True
